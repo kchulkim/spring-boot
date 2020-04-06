@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class BookController {
 	@Autowired
 	BookService bookService;
 	@GetMapping("/{bookId}")
-	public ResponseEntity<Book> findById(Long bookId) {
+	public ResponseEntity<Book> findById(@PathVariable Long bookId) {
 		Book book = (bookService.findById(bookId)
 				.orElseThrow(() -> new RuntimeException("Not Found : "+bookId)));
 		return ResponseEntity.ok(book);
