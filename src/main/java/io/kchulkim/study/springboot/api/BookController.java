@@ -17,7 +17,7 @@ public class BookController {
 
 	@Autowired
 	BookService bookService;
-	@GetMapping(" /{bookId}")
+	@GetMapping("/{bookId}")
 	public ResponseEntity<Book> findById(Long bookId) {
 		Book book = (bookService.findById(bookId)
 				.orElseThrow(() -> new RuntimeException("Not Found : "+bookId)));
